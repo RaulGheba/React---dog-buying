@@ -1,0 +1,81 @@
+function AddDogForm({ dogs }) {
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState(null);
+  const [breed, setBreed] = useState("");
+  const [id, setId] = useState(null);
+  const [img, setImg] = useState("");
+
+  function handleName(e) {
+    return setName(e.target.value);
+  }
+
+  function handlePrice(e) {
+    return setPrice(Number(e.target.value));
+  }
+
+  function handleBreed(e) {
+    return setBreed(e.target.value);
+  }
+
+  function handleId(e) {
+    return setId(Number(e.target.value));
+  }
+
+  function handleImg(e) {
+    return setImg(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    // Create a new dog object with the form data
+    const newDog = {
+      id,
+      name,
+      price,
+      breed,
+      img,
+    };
+
+    dogs = [...dogs, newDog];
+    console.log(dogs);
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="id">id:</label>
+        <input
+          type="text"
+          id="id"
+          value={Number(id)}
+          onChange={handleId}
+        ></input>
+      </div>
+      <div>
+        <label htmlFor="name">Name:</label>
+        <input type="text" id="name" value={name} onChange={handleName} />
+      </div>
+      <div>
+        <label htmlFor="price">Price:</label>
+        <input
+          type="text"
+          id="price"
+          value={Number(price)}
+          onChange={handlePrice}
+        />
+      </div>
+      <div>
+        <label htmlFor="breed">Breed:</label>
+        <input type="text" id="breed" value={breed} onChange={handleBreed} />
+      </div>
+      <div>
+        <label htmlFor="img">Img:</label>
+        <input type="text" id="img" value={img} onChange={handleImg}></input>
+      </div>
+      <div>
+        <button type="submit">Add Dog</button>
+      </div>
+    </form>
+  );
+}
